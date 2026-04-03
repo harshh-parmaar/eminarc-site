@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2B Founder Social Selling & LinkedIn Growth Agency | Eminarc</title>
+<meta name="description" content="Stop wasting time on vanity metrics. Eminarc provides B2B social selling strategies and LinkedIn lead generation for founders. Convert content into high-ticket revenue.">
+
+<meta property="og:title" content="B2B Social Selling & LinkedIn Growth for Founders | Eminarc">
+<meta property="og:description" content="Move beyond posting. Build a lead generation engine that works while you sleep.">
+<meta property="og:image" content="https://yourdomain.com/preview-seo.jpg">
+<meta property="og:url" content="https://yourdomain.com/social-selling">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Editorial+New:ital@0;1&family=Epilogue:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#080808;
+  --black2:#0D0D0D;
+  --black3:#111111;
+  --green:#AAFF6B;
+  --green2:#C5FF95;
+  --green3:rgba(170,255,107,0.08);
+  --white:#F4F2EE;
+  --muted:#555550;
+  --border:rgba(170,255,107,0.1);
+  --borderw:rgba(244,242,238,0.06);
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{background:var(--black);color:var(--white);font-family:'Epilogue',sans-serif;overflow-x:hidden;cursor:none;}
+
+/* ─── CURSOR ─── */
+#dot{width:8px;height:8px;background:var(--green);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,width .25s,height .25s,opacity .2s;}
+#ring{width:32px;height:32px;border:1px solid rgba(170,255,107,.3);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;}
+body.hovering #dot{width:14px;height:14px;}
+body.hovering #ring{width:50px;height:50px;border-color:rgba(170,255,107,.6);}
+@media(hover:none){#dot,#ring{display:none;}}
+
+/* ─── NOISE ─── */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");pointer-events:none;z-index:8000;}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:48px 64px;transition:all .5s ease;}
+nav.stuck{background:rgba(8,8,8,.92);backdrop-filter:blur(20px);padding:16px 56px;border-bottom:1px solid var(--borderw);}
+.logo{font-family:'Epilogue',sans-serif;font-weight:900;font-size:22px;letter-spacing:-1px;text-decoration:none;color:var(--white);}
+.logo em{color:var(--green);font-style:normal;}
+.nav-links{display:flex;align-items:center;gap:36px;}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--white);}
+.nav-cta{position:relative;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--black)!important;background:var(--green);padding:11px 26px;border-radius:2px;overflow:hidden;transition:all .3s!important;}
+.nav-cta::after{content:'';position:absolute;inset:0;background:var(--white);transform:translateX(-101%);transition:transform .35s cubic-bezier(.77,0,.175,1);}
+.nav-cta:hover::after{transform:translateX(0);}
+.nav-cta span{position:relative;z-index:1;color:var(--black);}
+
+/* ─── HERO ─── */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 56px 72px;position:relative;overflow:hidden;}
+#hero-canvas{position:absolute;inset:0;z-index:0;}
+.hero-bg-word{position:absolute;font-family:'Epilogue',sans-serif;font-weight:900;font-size:clamp(140px,25vw,380px);color:transparent;-webkit-text-stroke:1px rgba(170,255,107,0.05);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;letter-spacing:-8px;pointer-events:none;animation:bgword 12s ease-in-out infinite;user-select:none;}
+@keyframes bgword{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.03);}}
+.hero-content{position:relative;z-index:2;margin-top:100px;}
+.hero-headline{font-family:'Epilogue',sans-serif;font-weight:900;font-size:clamp(52px,10vw,148px);line-height:.88;letter-spacing:-3px;margin-bottom:0;}
+.hero-headline .word{display:block;overflow:hidden;}
+.hero-headline .word span{display:block;transform:translateY(110%);animation:wordReveal .9s cubic-bezier(.16,1,.3,1) forwards;}
+.hero-headline .w1 span{animation-delay:.35s;}
+.hero-headline .w2 span{animation-delay:.5s;color:transparent;-webkit-text-stroke:1px rgba(244,242,238,.25);}
+.hero-headline .w3 span{animation-delay:.65s;color:var(--green);}
+.hero-headline .w4 span{animation-delay:.8s;}
+@keyframes wordReveal{from{transform:translateY(110%);}to{transform:translateY(0);}}
+.hero-sub-row{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-top:52px;opacity:0;animation:lineUp .9s .95s cubic-bezier(.16,1,.3,1) forwards;flex-wrap:wrap;}
+.hero-sub{font-size:15px;font-weight:400;color:rgba(244,242,238,.45);line-height:1.7;max-width:580px;}
+.btn-fill{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:var(--black);font-family:'Epilogue',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px;text-decoration:none;padding:16px 32px;border-radius:2px;position:relative;overflow:hidden;transition:transform .25s,box-shadow .3s;}
+.btn-fill::before{content:'';position:absolute;inset:0;background:var(--white);transform:scale(0);border-radius:50%;transition:transform .5s cubic-bezier(.16,1,.3,1);}
+.btn-fill:hover::before{transform:scale(3);}
+.btn-fill span,.btn-fill svg{position:relative;z-index:1;}
+
+/* ─── CONTENT BLOCKS ─── */
+section{padding:100px 56px;}
+.stag{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:24px;}
+.stag::before{content:'';width:20px;height:1px;background:var(--green);}
+h2.head{font-family:'Epilogue',sans-serif;font-weight:900;font-size:clamp(38px,5vw,72px);line-height:.95;letter-spacing:-2px;margin-bottom:16px;}
+h2.head .g{color:var(--green);}
+.long-text{font-size:17px;color:rgba(244,242,238,0.7);line-height:1.8;max-width:850px;margin-bottom:32px;}
+.long-text strong{color:var(--white);font-weight:600;}
+
+/* ─── FEATURE GRID ─── */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--borderw);border:1px solid var(--borderw);margin-top:64px;}
+.fcard{background:var(--black);padding:48px 40px;transition:background .3s;}
+.fcard:hover{background:var(--black2);}
+.f-ic{font-size:32px;margin-bottom:24px;display:block;}
+.f-title{font-size:20px;font-weight:700;margin-bottom:12px;color:var(--white);}
+.f-body{font-size:14px;color:var(--muted);line-height:1.6;}
+
+/* ─── FOOTER ─── */
+footer{border-top:1px solid var(--borderw);padding:32px 56px;display:flex;justify-content:space-between;align-items:center;}
+footer p{font-size:12px;color:var(--muted);}
+.flinks{display:flex;gap:24px;}
+.flinks a{font-size:12px;color:var(--muted);text-decoration:none;}
+
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);}
+.reveal.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:900px){
+  .feat-grid{grid-template-columns:1fr;}
+  nav{padding:24px 24px;}
+  section{padding:80px 24px;}
+  footer{flex-direction:column;gap:20px;}
+}
+</style>
+</head>
+<body>
+<div id="dot"></div>
+<div id="ring"></div>
+
+<nav id="nav">
+  <a href="/" class="logo">Emin<em>arc</em></a>
+  <div class="nav-links">
+    <a href="#strategies">Strategies</a>
+    <a href="#why-us">Methodology</a>
+    <a href="https://calendly.com/pratyushharsh207/30min" class="nav-cta"><span>Free Audit</span></a>
+  </div>
+</nav>
+
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-bg-word">GROWTH</div>
+
+  <div class="hero-content">
+    <h1 class="hero-headline">
+      <div class="word w1"><span>B2B Social</span></div>
+      <div class="word w2"><span>Selling for</span></div>
+      <div class="word w3"><span>Modern</span></div>
+      <div class="word w4"><span>Founders.</span></div>
+    </h1>
+
+    <div class="hero-sub-row">
+      <p class="hero-sub">
+        The era of cold calling is dead. Modern B2B growth happens in the feed. We help founders build <strong>authority engines</strong> that turn LinkedIn connections into high-ticket revenue.
+      </p>
+      <div class="hero-actions">
+        <a href="https://calendly.com/pratyushharsh207/30min" class="btn-fill">
+          <span>Start Generating Revenue</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="strategies" class="reveal">
+  <div class="stag">The SEO Playbook</div>
+  <h2 class="head">Dominate B2B <br><em>Lead Generation.</em></h2>
+  
+  <div class="long-text">
+    <p>In the high-stakes world of B2B sales, <strong>LinkedIn lead generation</strong> is no longer optional. But most agencies focus on vanity metrics—likes, comments, and follower growth. At Eminarc, we optimize for the only metric that matters: <strong>Revenue Pipeline</strong>.</p>
+    
+    <p>Successful <strong>B2B social selling</strong> requires a blend of psychological positioning and algorithmic expertise. When a prospective buyer lands on your profile, they aren't looking for a CV. They are looking for a visionary who understands their industry's deepest pains. Our done-for-you service ensures that every post you share acts as a high-converting sales asset.</p>
+  </div>
+
+  <div class="feat-grid">
+    <div class="fcard">
+      <span class="f-ic">📈</span>
+      <div class="f-title">Algorithmic Dominance</div>
+      <div class="f-body">We don't guess what works. We use data-backed frameworks to ensure your content bypasses the noise and reaches 2nd and 3rd-degree connections—where your new clients live.</div>
+    </div>
+    <div class="fcard">
+      <span class="f-ic">🤝</span>
+      <div class="f-title">Social Selling Systems</div>
+      <div class="f-body">Move from passive posting to active selling. We implement systems that identify "hand-raisers" and warm up prospects before you ever jump on a discovery call.</div>
+    </div>
+    <div class="fcard">
+      <span class="f-ic">💎</span>
+      <div class="f-title">High-Ticket Positioning</div>
+      <div class="f-body">If you sell services worth ₹10L+, you cannot afford to look average. We craft a "Category of One" brand for founders that justifies premium pricing.</div>
+    </div>
+  </div>
+</section>
+
+<section id="why-us" class="reveal" style="background:var(--black2);">
+  <div class="stag">The Methodology</div>
+  <h2 class="head">Why Content is <br><span class="g">Your Best Salesperson.</span></h2>
+  
+  <div class="long-text">
+    <p>Most founders treat LinkedIn as a megaphone. We treat it as a <strong>conversion funnel</strong>. By focusing on <strong>LinkedIn SEO</strong> for your personal profile, we make sure you appear at the top of searches when decision-makers are looking for experts in your niche.</p>
+    
+    <p>Our 90-day <strong>Founder Brand Accelerator</strong> is designed to reduce your sales cycle by up to 40%. How? By building "Invisible Trust." By the time a lead books a call through our automated system, they have already consumed your insights, agreed with your methodology, and viewed you as an authority. You aren't "selling" anymore; you're simply facilitating the onboarding of a new partner.</p>
+
+    <p><strong>Eminarc’s B2B growth strategy</strong> focuses on three core pillars:</p>
+    <ul style="margin-left:20px; margin-top:20px; display:grid; gap:15px;">
+        <li><strong>Authority Content:</strong> Industry-shifting insights that force prospects to stop scrolling.</li>
+        <li><strong>Strategic Engagement:</strong> Placing your voice in the comments of the world’s biggest B2B influencers.</li>
+        <li><strong>Pipeline Management:</strong> Turning digital attention into tangible calendar invites and signed contracts.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="stag">Revenue Focus</div>
+  <h2 class="head">Scale Your <br><em>Inbound Flow.</em></h2>
+  <div class="long-text">
+    <p>The math is simple: More authority equals more trust. More trust equals higher conversion rates. Higher conversion rates equal a <strong>flourishing business</strong>. Whether you are a solo-founder or leading a team of 50, your personal brand is the most scalable marketing asset you own. Unlike ads, which stop working the moment you stop paying, a founder brand compounds in value every single month.</p>
+  </div>
+</section>
+
+<section class="cta-sec reveal">
+  <h2>Build a business <br>that <em>never stops</em><br><span class="g">generating leads.</span></h2>
+  <div class="cta-actions" style="margin-top:40px;">
+    <a href="https://calendly.com/pratyushharsh207/30min" class="btn-fill" style="font-size:14px;padding:18px 44px;">
+      <span>Book My Strategy Audit</span>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <a href="/" class="logo">Emin<em>arc</em></a>
+  <p>© 2025 Eminarc. Built for B2B Revenue.</p>
+  <div class="flinks">
+    <a href="#">Privacy Policy</a>
+    <a href="mailto:hey@eminarc.com">Support</a>
+  </div>
+</footer>
+
+<script>
+// ── CURSOR LOGIC
+const dot=document.getElementById('dot'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  dot.style.left=mx+'px';dot.style.top=my+'px';
+});
+(function loop(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(loop);
+})();
+
+// ── NAV STICK
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>60),{passive:true});
+
+// ── SCROLL REVEAL
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');revObs.unobserve(e.target);}});
+},{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// ── SIMPLE CANVAS
+const canvas=document.getElementById('hero-canvas');
+const ctx=canvas.getContext('2d');
+let W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize();
+function animate(){
+  ctx.clearRect(0,0,W,H);
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>
