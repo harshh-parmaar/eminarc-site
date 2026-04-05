@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://eminarc.com/</loc>
-  </url>
-  <url>
-    <loc>https://eminarc.com/lead-generation.html</loc>
-  </url>
-  <url>
-    <loc>https://eminarc.com/social-selling.html</loc>
-  </url>
-</urlset>
+<url>
+  <loc>https://eminarc.com/</loc>
+  <priority>1.0</priority>
+</url>
+
+<url>
+  <loc>https://eminarc.com/lead-generation.html</loc>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://eminarc.com/social-selling.html</loc>
+  <priority>0.7</priority>
+</url>
