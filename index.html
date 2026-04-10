@@ -71,7 +71,7 @@ body.hovering #ring{width:50px;height:50px;border-color:rgba(170,255,107,.6);}
 #warp-canvas{
   position:fixed;inset:0;z-index:1;
   pointer-events:none;
-  opacity:1;
+  opacity:0.85;
 }
 
 /* ─── NOISE ─── */
@@ -849,102 +849,111 @@ Eminarc is a LinkedIn growth and B2B lead generation system for founders that he
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── WARP STAR ANIMATION (full-page)
+// ── WARP ANIMATION (full-page)
 (function(){
-  const wc = document.getElementById('warp-canvas');
-  const wx = wc.getContext('2d');
-  let WW, WH;
+  const ac = document.getElementById('warp-canvas');
+  const ax = ac.getContext('2d');
+  let AW, AH, cx, cy;
 
-  function resizeWarp(){
-    WW = wc.width = window.innerWidth;
-    WH = wc.height = window.innerHeight;
+  function resize(){
+    AW = ac.width = window.innerWidth;
+    AH = ac.height = window.innerHeight;
+    cx = AW / 2; cy = AH / 2;
   }
-  resizeWarp();
-  window.addEventListener('resize', resizeWarp);
+  resize();
+  window.addEventListener('resize', resize);
 
-  const NUM_STARS = 320;
-  const SPEED_BASE = 0.012;
-  let warpSpeed = SPEED_BASE;
-  let targetSpeed = SPEED_BASE;
+  const STAR_COUNT = 500;
+  const MAX_DEPTH = 1200;
+  const BASE_SPEED = 2.2;
+  let speed = BASE_SPEED;
+  let targetSpeed = BASE_SPEED;
 
-  // Smooth speed ramp on scroll
-  let lastScroll = 0;
-  let scrollVelocity = 0;
+  // Scroll acceleration
+  let lastY = 0;
   window.addEventListener('scroll', () => {
-    scrollVelocity = Math.abs(window.scrollY - lastScroll);
-    lastScroll = window.scrollY;
-    targetSpeed = SPEED_BASE + Math.min(scrollVelocity * 0.0006, 0.07);
-    clearTimeout(window._warpTimeout);
-    window._warpTimeout = setTimeout(() => { targetSpeed = SPEED_BASE; }, 180);
-  }, {passive: true});
+    const delta = Math.abs(window.scrollY - lastY);
+    lastY = window.scrollY;
+    targetSpeed = BASE_SPEED + Math.min(delta * 0.9, 18);
+    clearTimeout(window._wt);
+    window._wt = setTimeout(() => { targetSpeed = BASE_SPEED; }, 220);
+  }, {passive:true});
 
-  const stars = [];
-  class Star {
-    constructor(born){
-      this.init(born);
-    }
-    init(born){
-      // Start from random position (polar coords from center)
-      this.angle = Math.random() * Math.PI * 2;
-      this.dist = born ? Math.random() * Math.hypot(WW, WH) * 0.5 : Math.random() * 60 + 2;
-      this.z = born ? Math.random() : 0.01 + Math.random() * 0.1;
-      this.size = 0;
-      this.tail = 0;
-      // Color: mostly white/silver, occasional green tint
-      const roll = Math.random();
-      if(roll < 0.07) this.hue = 'rgba(170,255,107,'; // green
-      else if(roll < 0.14) this.hue = 'rgba(200,255,160,'; // soft green
-      else this.hue = 'rgba(244,242,238,'; // white
-      this.opacity = Math.random() * 0.55 + 0.15;
-    }
-    update(){
-      this.z += warpSpeed;
-      const scale = 1 / (1 - this.z);
-      const cx = WW / 2, cy = WH / 2;
-      this.px = cx + Math.cos(this.angle) * this.dist * scale;
-      this.py = cy + Math.sin(this.angle) * this.dist * scale;
-      this.size = Math.max(0.2, scale * 0.9);
-      this.tail = Math.max(0, (scale - 1) * 14 * (warpSpeed / SPEED_BASE));
-
-      // Reset if out of screen or z >= 1
-      if(this.z >= 0.98 || this.px < -20 || this.px > WW + 20 || this.py < -20 || this.py > WH + 20){
-        this.init(false);
-      }
-    }
-    draw(){
-      const alpha = Math.min(this.opacity, this.z * 2);
-      if(this.tail > 0.5){
-        const cx = WW / 2, cy = WH / 2;
-        const prevScale = 1 / (1 - Math.max(0.001, this.z - warpSpeed * 2));
-        const px0 = cx + Math.cos(this.angle) * this.dist * prevScale;
-        const py0 = cy + Math.sin(this.angle) * this.dist * prevScale;
-        const grad = wx.createLinearGradient(px0, py0, this.px, this.py);
-        grad.addColorStop(0, this.hue + '0)');
-        grad.addColorStop(1, this.hue + alpha + ')');
-        wx.beginPath();
-        wx.moveTo(px0, py0);
-        wx.lineTo(this.px, this.py);
-        wx.strokeStyle = grad;
-        wx.lineWidth = Math.min(this.size * 0.7, 1.4);
-        wx.stroke();
-      }
-      wx.beginPath();
-      wx.arc(this.px, this.py, Math.min(this.size * 0.55, 1.6), 0, Math.PI * 2);
-      wx.fillStyle = this.hue + alpha + ')';
-      wx.fill();
-    }
+  function mkStar(deep){
+    const angle = Math.random() * Math.PI * 2;
+    const radius = deep ? Math.random() * 320 + 1 : Math.random() * 120 + 1;
+    return {
+      ox: Math.cos(angle) * radius,   // origin offset from center
+      oy: Math.sin(angle) * radius,
+      z:  deep ? Math.random() * MAX_DEPTH : MAX_DEPTH,
+      // colour: ~8% green, rest white
+      green: Math.random() < 0.08,
+    };
   }
 
-  for(let i = 0; i < NUM_STARS; i++) stars.push(new Star(true));
+  const stars = Array.from({length: STAR_COUNT}, () => mkStar(true));
 
-  function warpLoop(){
-    wx.clearRect(0, 0, WW, WH);
-    // Ease speed
-    warpSpeed += (targetSpeed - warpSpeed) * 0.06;
-    stars.forEach(s => { s.update(); s.draw(); });
-    requestAnimationFrame(warpLoop);
+  function draw(){
+    // Fade trail — semi-transparent clear gives the streaking effect
+    ax.fillStyle = 'rgba(8,8,8,0.18)';
+    ax.fillRect(0, 0, AW, AH);
+
+    speed += (targetSpeed - speed) * 0.07;
+
+    for(let i = 0; i < stars.length; i++){
+      const s = stars[i];
+      s.z -= speed;
+      if(s.z <= 0){ Object.assign(stars[i], mkStar(false)); continue; }
+
+      const pz = s.z / MAX_DEPTH;           // 0 (close) → 1 (far)
+      const inv = 1 - pz;                   // grows as star approaches
+
+      // Perspective projection
+      const sx = cx + s.ox / pz;
+      const sy = cy + s.oy / pz;
+
+      if(sx < -10 || sx > AW+10 || sy < -10 || sy > AH+10){
+        Object.assign(stars[i], mkStar(false)); continue;
+      }
+
+      // Previous frame position for streak
+      const prevPz = (s.z + speed) / MAX_DEPTH;
+      const px = cx + s.ox / prevPz;
+      const py = cy + s.oy / prevPz;
+
+      const size   = Math.max(0.2, inv * 2.2);
+      const alpha  = Math.min(1, inv * 1.6) * 0.75;
+      const streak = speed > BASE_SPEED * 1.4;
+
+      const r = s.green ? `rgba(170,255,107,` : `rgba(220,230,215,`;
+
+      if(streak || inv > 0.4){
+        // Draw tail streak
+        const g = ax.createLinearGradient(px, py, sx, sy);
+        g.addColorStop(0, r + '0)');
+        g.addColorStop(1, r + alpha + ')');
+        ax.beginPath();
+        ax.moveTo(px, py);
+        ax.lineTo(sx, sy);
+        ax.strokeStyle = g;
+        ax.lineWidth = size * 0.55;
+        ax.stroke();
+      }
+
+      // Draw star dot
+      ax.beginPath();
+      ax.arc(sx, sy, size * 0.5, 0, Math.PI * 2);
+      ax.fillStyle = r + alpha + ')';
+      ax.fill();
+    }
+
+    requestAnimationFrame(draw);
   }
-  warpLoop();
+
+  // First clear to black before loop starts
+  ax.fillStyle = '#080808';
+  ax.fillRect(0, 0, AW, AH);
+  draw();
 })();
 
 // ── CURSOR
