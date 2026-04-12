@@ -1235,7 +1235,7 @@ hAnimate();
   function drawRocket(x, y, angle, w, h) {
     rctx.save();
     rctx.translate(x, y);
-    rctx.rotate(angle - Math.PI/2);
+    rctx.rotate(angle + Math.PI/2);
     const s = Math.min(w, h) * 0.055;
 
     // glow
